@@ -5,15 +5,15 @@ import { Address } from "viem";
 
 
 export default function useGetSwapAmount() {
-    const [amount, setAmount] = useState<string>('0');
+    // const [amount, setAmount] = useState<string>('0');
     const [swapAmount, setSwapAmount] = useState('1');
 
-    console.log(amount, swapAmount);
+    // console.log(amount, swapAmount);
 
 
     const { data: result, isFetching, isFetched, error } = useReadContract({
         address: CSAMM.address as Address,
-        abi: CSAMM.abi2,
+        abi: CSAMM.abi,
         functionName: 'getAmountOut',
         args: [swapAmount]
     })
@@ -22,5 +22,5 @@ export default function useGetSwapAmount() {
         console.error('Error reading contract:', error);
     }
 
-    return { result, isFetching, isFetched, amount, setAmount, swapAmount, setSwapAmount }
+    return { result, isFetching, isFetched, swapAmount, setSwapAmount }
 };
